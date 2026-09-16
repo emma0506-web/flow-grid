@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowGrid · 零依赖响应式瀑布流 Demo</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #0f1115;
+        color: #e6e6e6;
+      }
+      header { padding: 24px 20px 8px; }
+      h1 { margin: 0 0 4px; font-size: 20px; }
+      .sub { color: #8a8f98; font-size: 13px; }
+      .toolbar {
+        display: flex; gap: 8px; flex-wrap: wrap;
+        padding: 16px 20px; position: sticky; top: 0;
+        background: rgba(15,17,21,.85); backdrop-filter: blur(8px); z-index: 10;
+      }
+      button {
+        background: #2b6cff; color: #fff; border: 0; border-radius: 8px;
+        padding: 8px 14px; font-size: 13px; cursor: pointer;
+      }
+      button.ghost { background: #23262d; }
+      #grid { padding: 0 20px 40px; }
+      .card {
+        border-radius: 12px; overflow: hidden; background: #1a1d24;
+        border: 1px solid #262a33; color: #cfd3da; font-size: 12px;
+        display: flex; flex-direction: column; justify-content: flex-end;
+        padding: 10px; transition: transform .2s ease;
+      }
+      .card b { color: #fff; font-size: 13px; }
+      .card .id { color: #6b7280; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FlowGrid</h1>
+      <div class="sub">零依赖响应式瀑布流布局引擎 · 拖动窗口宽度看列数自适应 · 点按钮增删卡片</div>
+    </header>
+    <div class="toolbar">
+      <button id="add">+ 加 5 张</button>
+      <button id="remove" class="ghost">− 减 5 张</button>
+      <button id="shuffle" class="ghost">↻ 打乱高度</button>
+      <span id="stat" class="sub" style="align-self:center"></span>
+    </div>
+    <div id="grid"></div>
+    <script type="module" src="/src/demo.ts"></script>
+  </body>
+</html>

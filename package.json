@@ -1,0 +1,47 @@
+{
+  "name": "flow-grid",
+  "version": "1.0.0",
+  "description": "零依赖的响应式瀑布流（Masonry）布局引擎，TypeScript 实现，抽取自千万级金融前端实战。",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "masonry",
+    "waterfall",
+    "瀑布流",
+    "layout",
+    "typescript",
+    "frontend",
+    "responsive"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<your-username>/flow-grid"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsup",
+    "build:demo": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  },
+  "sideEffects": false
+}
