@@ -2,7 +2,7 @@
   <img src="https://img.shields.io/badge/deps-0-brightgreen.svg" alt="零依赖" />
   <img src="https://img.shields.io/badge/types-TypeScript-blue.svg" alt="TypeScript" />
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" />
-  <img src="https://github.com/<your-username>/flow-grid/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  <img src="https://github.com/emma0506-web/flow-grid/actions/workflows/ci.yml/badge.svg" alt="CI" />
   <img src="https://img.shields.io/badge/coverage-tested-brightgreen.svg" alt="tested" />
 </p>
 
@@ -124,6 +124,14 @@ interface LayoutResult {
 | `onRender` | `(positions) => void` | — | 每次布局完成回调 |
 
 **实例方法**：`setItems(items)`、`updateOptions(opts)`、`render()`、`destroy()`。
+
+> 💡 组件卸载时务必调用 `destroy()` 解除 `ResizeObserver` 监听，避免内存泄漏。React 示例：
+> ```tsx
+> useEffect(() => {
+>   const grid = new FlowGrid(ref.current!)
+>   return () => grid.destroy() // 组件卸载即清理
+> }, [])
+> ```
 
 ## 🧠 算法说明
 

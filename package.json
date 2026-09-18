@@ -28,7 +28,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<your-username>/flow-grid"
+    "url": "https://github.com/emma0506-web/flow-grid"
   },
   "scripts": {
     "dev": "vite",

@@ -50,7 +50,15 @@ export class FlowGrid {
     this.container.style.width = '100%'
 
     if (!this.opts.static && typeof ResizeObserver !== 'undefined') {
-      this.resizeObserver = new ResizeObserver(() => this.render())
+      let skipFirst = true
+      this.resizeObserver = new ResizeObserver(() => {
+        // observe 触发一次初始回调，与构造函数的同步 render 重复，跳过以避挂载闪烁
+        if (skipFirst) {
+          skipFirst = false
+          return
+        }
+        this.render()
+      })
       this.resizeObserver.observe(this.container)
     }
 
@@ -90,10 +98,15 @@ export class FlowGrid {
       columnWidth: this.opts.columnWidth
     })
 
+    // 一次性收集子元素到 Map，避免对每条目重复 querySelector（O(n^2) -> O(n)）
+    const elMap = new Map<string, HTMLElement>()
+    for (const el of this.container.querySelectorAll<HTMLElement>('[data-flow-id]')) {
+      const id = el.dataset.flowId
+      if (id) elMap.set(id, el)
+    }
+
     for (const pos of result.positions) {
-      const el = this.container.querySelector<HTMLElement>(
-        `[data-flow-id="${CSS.escape(pos.id)}"]`
-      )
+      const el = elMap.get(pos.id)
       if (!el) continue
       el.style.position = 'absolute'
       el.style.top = '0'

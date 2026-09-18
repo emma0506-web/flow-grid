@@ -67,8 +67,11 @@ export function computeLayout(
       if (columnHeights[i] < columnHeights[target]) target = i
     }
 
-    const scale = columnWidth / item.width
-    const scaledHeight = item.height * scale
+    // 防御：条目宽高为 0 / 非法时，用列宽兜底等比，避免除零得到 Infinity 撑崩页面
+    const safeWidth = item.width > 0 ? item.width : columnWidth
+    const safeHeight = item.height > 0 ? item.height : 0
+    const scale = columnWidth / safeWidth
+    const scaledHeight = safeHeight * scale
     const x = target * (columnWidth + gap)
     const y = columnHeights[target]
 
